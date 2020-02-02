@@ -1,0 +1,934 @@
+<html lang="en" class=" "><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="csrf-token" content="1g6L1srgQeTWfH2KJx3CQI4QZ4wQ9Cxkqo2JJqC5">
+    <title>Logi sisse</title>
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <link href="/css/app.css?id=c45df005ff1137e2cc26" rel="stylesheet">
+<style type="text/css">
+.vue-modal-resizer {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  right: 0;
+  bottom: 0;
+  z-index: 9999999;
+  background: transparent;
+  cursor: se-resize;
+}
+.vue-modal-resizer::after {
+  display: block;
+  position: absolute;
+  content: '';
+  background: transparent;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 10px solid #ddd;
+  border-left: 10px solid transparent;
+}
+.vue-modal-resizer.clicked::after {
+  border-bottom: 10px solid #369be9;
+}
+</style><style type="text/css">
+.v--modal-block-scroll {
+  overflow: hidden;
+  width: 100vw;
+}
+.v--modal-overlay {
+  position: fixed;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  opacity: 1;
+}
+.v--modal-overlay.scrollable {
+  height: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.v--modal-overlay .v--modal-background-click {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+}
+.v--modal-overlay .v--modal-box {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.v--modal-overlay.scrollable .v--modal-box {
+  margin-bottom: 2px;
+}
+.v--modal {
+  background-color: white;
+  text-align: left;
+  border-radius: 3px;
+  box-shadow: 0 20px 60px -2px rgba(27, 33, 58, 0.4);
+  padding: 0;
+}
+.v--modal.v--modal-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  left: 0;
+  top: 0;
+}
+.v--modal-top-right {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.overlay-fade-enter-active,
+.overlay-fade-leave-active {
+  transition: all 0.2s;
+}
+.overlay-fade-enter,
+.overlay-fade-leave-active {
+  opacity: 0;
+}
+.nice-modal-fade-enter-active,
+.nice-modal-fade-leave-active {
+  transition: all 0.4s;
+}
+.nice-modal-fade-enter,
+.nice-modal-fade-leave-active {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+</style><style type="text/css">
+.vue-dialog div {
+  box-sizing: border-box;
+}
+.vue-dialog .dialog-flex {
+  width: 100%;
+  height: 100%;
+}
+.vue-dialog .dialog-content {
+  flex: 1 0 auto;
+  width: 100%;
+  padding: 15px;
+  font-size: 14px;
+}
+.vue-dialog .dialog-c-title {
+  font-weight: 600;
+  padding-bottom: 15px;
+}
+.vue-dialog .dialog-c-text {
+}
+.vue-dialog .vue-dialog-buttons {
+  display: flex;
+  flex: 0 1 auto;
+  width: 100%;
+  border-top: 1px solid #eee;
+}
+.vue-dialog .vue-dialog-buttons-none {
+  width: 100%;
+  padding-bottom: 15px;
+}
+.vue-dialog-button {
+  font-size: 12px !important;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+  line-height: 40px;
+  height: 40px;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+.vue-dialog-button:hover {
+  background: rgba(0, 0, 0, 0.01);
+}
+.vue-dialog-button:active {
+  background: rgba(0, 0, 0, 0.025);
+}
+.vue-dialog-button:not(:first-of-type) {
+  border-left: 1px solid #eee;
+}
+</style><style type="text/css">@charset "UTF-8";
+.mx-datepicker {
+  position: relative;
+  display: inline-block;
+  width: 210px;
+  color: #73879c;
+  font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', sans-serif; }
+  .mx-datepicker * {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+  .mx-datepicker.disabled {
+    opacity: 0.7;
+    cursor: not-allowed; }
+
+.mx-datepicker-range {
+  width: 320px; }
+
+.mx-datepicker-popup {
+  position: absolute;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  z-index: 1000; }
+
+.mx-input-wrapper {
+  position: relative; }
+  .mx-input-wrapper .mx-clear-wrapper {
+    display: none; }
+  .mx-input-wrapper:hover .mx-clear-wrapper {
+    display: block; }
+  .mx-input-wrapper:hover .mx-clear-wrapper + .mx-input-append {
+    display: none; }
+
+.mx-input {
+  display: inline-block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 30px;
+  padding-left: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+  .mx-input:disabled, .mx-input.disabled {
+    opacity: 0.7;
+    cursor: not-allowed; }
+  .mx-input:focus {
+    outline: none; }
+  .mx-input::-ms-clear {
+    display: none; }
+
+.mx-input-append {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 100%;
+  padding: 6px; }
+
+.mx-input-icon {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  font-style: normal;
+  color: #555;
+  text-align: center;
+  cursor: pointer; }
+
+.mx-calendar-icon {
+  width: 100%;
+  height: 100%;
+  color: #555;
+  stroke-width: 8px;
+  stroke: currentColor;
+  fill: currentColor; }
+
+.mx-clear-icon::before {
+  display: inline-block;
+  content: '\2716';
+  vertical-align: middle; }
+
+.mx-clear-icon::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle; }
+
+.mx-range-wrapper {
+  width: 496px;
+  overflow: hidden; }
+
+.mx-shortcuts-wrapper {
+  text-align: left;
+  padding: 0 12px;
+  line-height: 34px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+  .mx-shortcuts-wrapper .mx-shortcuts {
+    background: none;
+    outline: none;
+    border: 0;
+    color: #48576a;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    cursor: pointer; }
+    .mx-shortcuts-wrapper .mx-shortcuts:hover {
+      color: #419dec; }
+    .mx-shortcuts-wrapper .mx-shortcuts:after {
+      content: '|';
+      margin: 0 10px;
+      color: #48576a; }
+    .mx-shortcuts-wrapper .mx-shortcuts:last-child::after {
+      display: none; }
+
+.mx-datepicker-footer {
+  padding: 4px;
+  clear: both;
+  text-align: right;
+  border-top: 1px solid rgba(0, 0, 0, 0.05); }
+
+.mx-datepicker-btn {
+  font-size: 12px;
+  line-height: 1;
+  padding: 7px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-radius: 3px; }
+
+.mx-datepicker-btn-confirm {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #73879c; }
+  .mx-datepicker-btn-confirm:hover {
+    color: #1284e7;
+    border-color: #1284e7; }
+
+/* 日历组件 */
+.mx-calendar {
+  float: left;
+  color: #73879c;
+  padding: 6px 12px;
+  font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, sans-serif; }
+  .mx-calendar * {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+
+.mx-calendar-header {
+  padding: 0 4px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  overflow: hidden; }
+  .mx-calendar-header > a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer; }
+    .mx-calendar-header > a:hover {
+      color: #419dec; }
+  .mx-icon-last-month, .mx-icon-last-year,
+  .mx-icon-next-month,
+  .mx-icon-next-year {
+    padding: 0 6px;
+    font-size: 20px;
+    line-height: 30px;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; }
+  .mx-icon-last-month, .mx-icon-last-year {
+    float: left; }
+  
+  .mx-icon-next-month,
+  .mx-icon-next-year {
+    float: right; }
+
+.mx-calendar-content {
+  width: 224px;
+  height: 224px; }
+  .mx-calendar-content .cell {
+    vertical-align: middle;
+    cursor: pointer; }
+    .mx-calendar-content .cell:hover {
+      background-color: #eaf8fe; }
+    .mx-calendar-content .cell.actived {
+      color: #fff;
+      background-color: #1284e7; }
+    .mx-calendar-content .cell.inrange {
+      background-color: #eaf8fe; }
+    .mx-calendar-content .cell.disabled {
+      cursor: not-allowed;
+      color: #ccc;
+      background-color: #f3f3f3; }
+
+.mx-panel {
+  width: 100%;
+  height: 100%;
+  text-align: center; }
+
+.mx-panel-date {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0; }
+  .mx-panel-date td,
+  .mx-panel-date th {
+    font-size: 12px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    overflow: hidden;
+    text-align: center; }
+  .mx-panel-date td.today {
+    color: #2a90e9; }
+  .mx-panel-date td.last-month, .mx-panel-date td.next-month {
+    color: #ddd; }
+
+.mx-panel-year {
+  padding: 7px 0; }
+  .mx-panel-year .cell {
+    display: inline-block;
+    width: 40%;
+    margin: 1px 5%;
+    line-height: 40px; }
+
+.mx-panel-month .cell {
+  display: inline-block;
+  width: 30%;
+  line-height: 40px;
+  margin: 8px 1.5%; }
+
+.mx-time-list {
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+  /* 滚动条滑块 */ }
+  .mx-time-list .mx-time-picker-item {
+    display: block;
+    text-align: left;
+    padding-left: 10px; }
+  .mx-time-list:first-child {
+    border-left: 0; }
+  .mx-time-list .cell {
+    width: 100%;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px; }
+  .mx-time-list::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; }
+  .mx-time-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+            box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1); }
+  .mx-time-list:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); }
+</style><style type="text/css">.ps{-ms-touch-action:auto;touch-action:auto;overflow:hidden!important;-ms-overflow-style:none}@supports (-ms-overflow-style:none){.ps{overflow:auto!important}}@media (-ms-high-contrast:none),screen and (-ms-high-contrast:active){.ps{overflow:auto!important}}.ps.ps--active-x>.ps__scrollbar-x-rail,.ps.ps--active-y>.ps__scrollbar-y-rail{display:block;background-color:transparent}.ps.ps--in-scrolling.ps--x>.ps__scrollbar-x-rail{background-color:#eee;opacity:.9}.ps.ps--in-scrolling.ps--x>.ps__scrollbar-x-rail>.ps__scrollbar-x{background-color:#999;height:11px}.ps.ps--in-scrolling.ps--y>.ps__scrollbar-y-rail{background-color:#eee;opacity:.9}.ps.ps--in-scrolling.ps--y>.ps__scrollbar-y-rail>.ps__scrollbar-y{background-color:#999;width:11px}.ps>.ps__scrollbar-x-rail{display:none;position:absolute;opacity:0;transition:background-color .2s linear,opacity .2s linear;bottom:0;height:15px}.ps>.ps__scrollbar-x-rail>.ps__scrollbar-x{position:absolute;background-color:#aaa;border-radius:6px;transition:background-color .2s linear,height .2s linear,width .2s ease-in-out,border-radius .2s ease-in-out;bottom:2px;height:6px}.ps>.ps__scrollbar-x-rail:active>.ps__scrollbar-x,.ps>.ps__scrollbar-x-rail:hover>.ps__scrollbar-x{height:11px}.ps>.ps__scrollbar-y-rail{display:none;position:absolute;opacity:0;transition:background-color .2s linear,opacity .2s linear;right:0;width:15px}.ps>.ps__scrollbar-y-rail>.ps__scrollbar-y{position:absolute;background-color:#aaa;border-radius:6px;transition:background-color .2s linear,height .2s linear,width .2s ease-in-out,border-radius .2s ease-in-out;right:2px;width:6px}.ps>.ps__scrollbar-y-rail:active>.ps__scrollbar-y,.ps>.ps__scrollbar-y-rail:hover>.ps__scrollbar-y{width:11px}.ps:hover.ps--in-scrolling.ps--x>.ps__scrollbar-x-rail{background-color:#eee;opacity:.9}.ps:hover.ps--in-scrolling.ps--x>.ps__scrollbar-x-rail>.ps__scrollbar-x{background-color:#999;height:11px}.ps:hover.ps--in-scrolling.ps--y>.ps__scrollbar-y-rail{background-color:#eee;opacity:.9}.ps:hover.ps--in-scrolling.ps--y>.ps__scrollbar-y-rail>.ps__scrollbar-y{background-color:#999;width:11px}.ps:hover>.ps__scrollbar-x-rail,.ps:hover>.ps__scrollbar-y-rail{opacity:.6}.ps:hover>.ps__scrollbar-x-rail:hover{background-color:#eee;opacity:.9}.ps:hover>.ps__scrollbar-x-rail:hover>.ps__scrollbar-x{background-color:#999}.ps:hover>.ps__scrollbar-y-rail:hover{background-color:#eee;opacity:.9}.ps:hover>.ps__scrollbar-y-rail:hover>.ps__scrollbar-y{background-color:#999}.ps-container{position:relative}</style><style type="text/css">/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #29d;
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+  opacity: 1.0;
+
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+      -ms-transform: rotate(3deg) translate(0px, -4px);
+          transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 50%;
+
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+          animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0%   { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+</style><style type="text/css">.notifications{display:block;position:fixed;z-index:5000}.notification-wrapper{display:block;overflow:hidden;width:100%;margin:0;padding:0}.notification-title{font-weight:600}.vue-notification-template{background:#fff}.vue-notification,.vue-notification-template{display:block;box-sizing:border-box;text-align:left}.vue-notification{font-size:12px;padding:10px;margin:0 5px 5px;color:#fff;background:#44a4fc;border-left:5px solid #187fe7}.vue-notification.warn{background:#ffb648;border-left-color:#f48a06}.vue-notification.error{background:#e54d42;border-left-color:#b82e24}.vue-notification.success{background:#68cd86;border-left-color:#42a85f}.vn-fade-enter-active,.vn-fade-leave-active,.vn-fade-move{transition:all .5s}.vn-fade-enter,.vn-fade-leave-to{opacity:0}</style><style type="text/css">
+.student-navigation .item[data-v-04952c8e] {
+  text-align: center;
+}
+.nav-link[data-v-04952c8e] {
+  text-transform: capitalize;
+  position: relative;
+  font-weight: 700;
+  color: black !important;
+}
+.nav-link[data-v-04952c8e]:hover {
+    color: #990033 !important;
+}
+.nav-item .active[data-v-04952c8e] {
+  background: #990033;
+  color: white !important;
+}
+.language[data-v-04952c8e] {
+  font-weight: 700;
+  color: black !important;
+}
+.language .nav-link[data-v-04952c8e] {
+    color: black !important;
+}
+.language .nav-link span[data-v-04952c8e] {
+      color: black !important;
+}
+.language span[data-v-04952c8e] {
+    color: black !important;
+}
+.notifications[data-v-04952c8e] {
+  position: relative;
+  z-index: 999 !important;
+}
+.notifications-empty[data-v-04952c8e] {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 25px;
+}
+.notifications-list[data-v-04952c8e] {
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    width: 300px;
+    left: -200px;
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.notifications-list ul[data-v-04952c8e] {
+      padding: 5px;
+      list-style: none;
+      background: transparent;
+}
+.notifications-list ul li[data-v-04952c8e] {
+        padding: 10px 5px;
+        border-bottom: 1px solid grey;
+        /*&:hover {*/
+        /*background: rgba(0, 0, 0, 0.1);*/
+        /*box-shadow: 5px 5px 5px 5px black;*/
+        /*}*/
+}
+
+/*# sourceURL=/var/www/arlp.lancertool/releases/99/resources/assets/js/views/components/Header/HeaderView.vue */
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2FybHAubGFuY2VydG9vbC9yZWxlYXNlcy85OS9yZXNvdXJjZXMvYXNzZXRzL2pzL3ZpZXdzL2NvbXBvbmVudHMvSGVhZGVyL0hlYWRlclZpZXcudnVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQTtFQUNFLG1CQUFtQjtDQUFFO0FBRXZCO0VBQ0UsMkJBQTJCO0VBQzNCLG1CQUFtQjtFQUNuQixpQkFBaUI7RUFDakIsd0JBQXdCO0NBQUU7QUFDMUI7SUFDRSwwQkFBMEI7Q0FBRTtBQUVoQztFQUNFLG9CQUFvQjtFQUNwQix3QkFBd0I7Q0FBRTtBQUU1QjtFQUNFLGlCQUFpQjtFQUNqQix3QkFBd0I7Q0FBRTtBQUMxQjtJQUNFLHdCQUF3QjtDQUFFO0FBQzFCO01BQ0Usd0JBQXdCO0NBQUU7QUFDOUI7SUFDRSx3QkFBd0I7Q0FBRTtBQUU5QjtFQUNFLG1CQUFtQjtFQUNuQix3QkFBd0I7Q0FBRTtBQUMxQjtJQUNFLG1CQUFtQjtJQUNuQixnQkFBZ0I7SUFDaEIsZ0JBQWdCO0NBQUU7QUFDcEI7SUFDRSxtQkFBbUI7SUFDbkIsa0JBQWtCO0lBQ2xCLHdCQUF3QjtJQUN4QixhQUFhO0lBQ2IsYUFBYTtJQUNiLGNBQWM7SUFDZCxtQkFBbUI7SUFDbkIsbUJBQW1CO0NBQUU7QUFDckI7TUFDRSxhQUFhO01BQ2IsaUJBQWlCO01BQ2pCLHdCQUF3QjtDQUFFO0FBQzFCO1FBQ0Usa0JBQWtCO1FBQ2xCLDhCQUE4QjtRQUM5QixhQUFhO1FBQ2IsbUNBQW1DO1FBQ25DLHNDQUFzQztRQUN0QyxLQUFLO0NBQUUiLCJmaWxlIjoiSGVhZGVyVmlldy52dWUiLCJzb3VyY2VzQ29udGVudCI6WyIuc3R1ZGVudC1uYXZpZ2F0aW9uIC5pdGVtIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyOyB9XG5cbi5uYXYtbGluayB7XG4gIHRleHQtdHJhbnNmb3JtOiBjYXBpdGFsaXplO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGZvbnQtd2VpZ2h0OiA3MDA7XG4gIGNvbG9yOiBibGFjayAhaW1wb3J0YW50OyB9XG4gIC5uYXYtbGluazpob3ZlciB7XG4gICAgY29sb3I6ICM5OTAwMzMgIWltcG9ydGFudDsgfVxuXG4ubmF2LWl0ZW0gLmFjdGl2ZSB7XG4gIGJhY2tncm91bmQ6ICM5OTAwMzM7XG4gIGNvbG9yOiB3aGl0ZSAhaW1wb3J0YW50OyB9XG5cbi5sYW5ndWFnZSB7XG4gIGZvbnQtd2VpZ2h0OiA3MDA7XG4gIGNvbG9yOiBibGFjayAhaW1wb3J0YW50OyB9XG4gIC5sYW5ndWFnZSAubmF2LWxpbmsge1xuICAgIGNvbG9yOiBibGFjayAhaW1wb3J0YW50OyB9XG4gICAgLmxhbmd1YWdlIC5uYXYtbGluayBzcGFuIHtcbiAgICAgIGNvbG9yOiBibGFjayAhaW1wb3J0YW50OyB9XG4gIC5sYW5ndWFnZSBzcGFuIHtcbiAgICBjb2xvcjogYmxhY2sgIWltcG9ydGFudDsgfVxuXG4ubm90aWZpY2F0aW9ucyB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgei1pbmRleDogOTk5ICFpbXBvcnRhbnQ7IH1cbiAgLm5vdGlmaWNhdGlvbnMtZW1wdHkge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBwYWRkaW5nOiAyMHB4IDA7XG4gICAgZm9udC1zaXplOiAyNXB4OyB9XG4gIC5ub3RpZmljYXRpb25zLWxpc3Qge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICB3aWR0aDogMzAwcHg7XG4gICAgbGVmdDogLTIwMHB4O1xuICAgIGhlaWdodDogMzAwcHg7XG4gICAgb3ZlcmZsb3cteTogc2Nyb2xsO1xuICAgIG92ZXJmbG93LXg6IGhpZGRlbjsgfVxuICAgIC5ub3RpZmljYXRpb25zLWxpc3QgdWwge1xuICAgICAgcGFkZGluZzogNXB4O1xuICAgICAgbGlzdC1zdHlsZTogbm9uZTtcbiAgICAgIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50OyB9XG4gICAgICAubm90aWZpY2F0aW9ucy1saXN0IHVsIGxpIHtcbiAgICAgICAgcGFkZGluZzogMTBweCA1cHg7XG4gICAgICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCBncmV5O1xuICAgICAgICAvKiY6aG92ZXIgeyovXG4gICAgICAgIC8qYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjEpOyovXG4gICAgICAgIC8qYm94LXNoYWRvdzogNXB4IDVweCA1cHggNXB4IGJsYWNrOyovXG4gICAgICAgIC8qfSovIH1cbiJdLCJzb3VyY2VSb290IjoiIn0= */</style><style type="text/css">
+body.appLoading {
+  overflow: hidden;
+}
+.loader-wrapper {
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /*opacity: 0.94;*/
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+.loader-wrapper #loader {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    height: 20vw;
+    width: 20vw;
+    margin: -10vw 0 0 -10vw;
+    border: 3px solid transparent;
+    border-top-color: #65b5de;
+    border-bottom-color: #65b5de;
+    border-radius: 50%;
+    z-index: 2;
+    -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+}
+.loader-wrapper #loader:before {
+    content: "";
+    position: absolute;
+    top: 2%;
+    bottom: 2%;
+    left: 2%;
+    right: 2%;
+    border: 3px solid transparent;
+    z-index: 2;
+    border-top-color: #db213a;
+    border-radius: 50%;
+    -webkit-animation: spin 3s linear infinite;
+            animation: spin 3s linear infinite;
+}
+.loader-wrapper #loader:after {
+    content: "";
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    left: 5%;
+    right: 5%;
+    border: 3px solid transparent;
+    border-top-color: #f4d32d;
+    z-index: 2;
+    border-radius: 50%;
+    -webkit-animation: spin 1.5s linear infinite;
+            animation: spin 1.5s linear infinite;
+}
+@-webkit-keyframes spin {
+0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+50% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(180deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+}
+@keyframes spin {
+0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+50% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(180deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+}
+
+/*# sourceURL=/var/www/arlp.lancertool/releases/99/resources/assets/js/views/components/Loading.vue */
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2FybHAubGFuY2VydG9vbC9yZWxlYXNlcy85OS9yZXNvdXJjZXMvYXNzZXRzL2pzL3ZpZXdzL2NvbXBvbmVudHMvTG9hZGluZy52dWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBO0VBQ0UsaUJBQWlCO0NBQUU7QUFFckI7RUFDRSxrQkFBa0I7RUFDbEIsZ0JBQWdCO0VBQ2hCLE9BQU87RUFDUCxRQUFRO0VBQ1Isa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixhQUFhO0VBQ2IsY0FBYztDQUFFO0FBQ2hCO0lBQ0UsbUJBQW1CO0lBQ25CLFVBQVU7SUFDVixTQUFTO0lBQ1QsYUFBYTtJQUNiLFlBQVk7SUFDWix3QkFBd0I7SUFDeEIsOEJBQThCO0lBQzlCLDBCQUEwQjtJQUMxQiw2QkFBNkI7SUFDN0IsbUJBQW1CO0lBQ25CLFdBQVc7SUFDWCwyQ0FBbUM7WUFBbkMsbUNBQW1DO0NBQUU7QUFDdkM7SUFDRSxZQUFZO0lBQ1osbUJBQW1CO0lBQ25CLFFBQVE7SUFDUixXQUFXO0lBQ1gsU0FBUztJQUNULFVBQVU7SUFDViw4QkFBOEI7SUFDOUIsV0FBVztJQUNYLDBCQUEwQjtJQUMxQixtQkFBbUI7SUFDbkIsMkNBQW1DO1lBQW5DLG1DQUFtQztDQUFFO0FBQ3ZDO0lBQ0UsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQixRQUFRO0lBQ1IsV0FBVztJQUNYLFNBQVM7SUFDVCxVQUFVO0lBQ1YsOEJBQThCO0lBQzlCLDBCQUEwQjtJQUMxQixXQUFXO0lBQ1gsbUJBQW1CO0lBQ25CLDZDQUFxQztZQUFyQyxxQ0FBcUM7Q0FBRTtBQUUzQztBQUNFO0lBQ0UsZ0NBQWdDO0lBRWhDLHdCQUF3QjtDQUFFO0FBQzVCO0lBQ0Usa0NBQWtDO0lBRWxDLDBCQUEwQjtDQUFFO0FBQzlCO0lBQ0Usa0NBQWtDO0lBRWxDLDBCQUEwQjtDQUFFO0NBQUU7QUE4QmxDO0FBQ0U7SUFDRSxnQ0FBZ0M7SUFFaEMsd0JBQXdCO0NBQUU7QUFDNUI7SUFDRSxrQ0FBa0M7SUFFbEMsMEJBQTBCO0NBQUU7QUFDOUI7SUFDRSxrQ0FBa0M7SUFFbEMsMEJBQTBCO0NBQUU7Q0FBRSIsImZpbGUiOiJMb2FkaW5nLnZ1ZSIsInNvdXJjZXNDb250ZW50IjpbImJvZHkuYXBwTG9hZGluZyB7XG4gIG92ZXJmbG93OiBoaWRkZW47IH1cblxuLmxvYWRlci13cmFwcGVyIHtcbiAgYmFja2dyb3VuZDogd2hpdGU7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICAvKm9wYWNpdHk6IDAuOTQ7Ki9cbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMTAwJTtcbiAgei1pbmRleDogOTk5OTsgfVxuICAubG9hZGVyLXdyYXBwZXIgI2xvYWRlciB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGxlZnQ6IDUwJTtcbiAgICB0b3A6IDUwJTtcbiAgICBoZWlnaHQ6IDIwdnc7XG4gICAgd2lkdGg6IDIwdnc7XG4gICAgbWFyZ2luOiAtMTB2dyAwIDAgLTEwdnc7XG4gICAgYm9yZGVyOiAzcHggc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgYm9yZGVyLXRvcC1jb2xvcjogIzY1YjVkZTtcbiAgICBib3JkZXItYm90dG9tLWNvbG9yOiAjNjViNWRlO1xuICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgICB6LWluZGV4OiAyO1xuICAgIGFuaW1hdGlvbjogc3BpbiAycyBsaW5lYXIgaW5maW5pdGU7IH1cbiAgLmxvYWRlci13cmFwcGVyICNsb2FkZXI6YmVmb3JlIHtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDIlO1xuICAgIGJvdHRvbTogMiU7XG4gICAgbGVmdDogMiU7XG4gICAgcmlnaHQ6IDIlO1xuICAgIGJvcmRlcjogM3B4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIHotaW5kZXg6IDI7XG4gICAgYm9yZGVyLXRvcC1jb2xvcjogI2RiMjEzYTtcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgYW5pbWF0aW9uOiBzcGluIDNzIGxpbmVhciBpbmZpbml0ZTsgfVxuICAubG9hZGVyLXdyYXBwZXIgI2xvYWRlcjphZnRlciB7XG4gICAgY29udGVudDogXCJcIjtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiA1JTtcbiAgICBib3R0b206IDUlO1xuICAgIGxlZnQ6IDUlO1xuICAgIHJpZ2h0OiA1JTtcbiAgICBib3JkZXI6IDNweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBib3JkZXItdG9wLWNvbG9yOiAjZjRkMzJkO1xuICAgIHotaW5kZXg6IDI7XG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICAgIGFuaW1hdGlvbjogc3BpbiAxLjVzIGxpbmVhciBpbmZpbml0ZTsgfVxuXG5ALXdlYmtpdC1rZXlmcmFtZXMgc3BpbiB7XG4gIDAlIHtcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDBkZWcpO1xuICAgIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTsgfVxuICA1MCUge1xuICAgIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICAtbXMtdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgxODBkZWcpOyB9XG4gIDEwMCUge1xuICAgIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICAtbXMtdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpOyB9IH1cblxuQC1tb3ota2V5ZnJhbWVzIHNwaW4ge1xuICAwJSB7XG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTtcbiAgICAtbXMtdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH1cbiAgNTAlIHtcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7XG4gICAgLW1zLXRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoMTgwZGVnKTsgfVxuICAxMDAlIHtcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7XG4gICAgLW1zLXRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTsgfSB9XG5cbkAtby1rZXlmcmFtZXMgc3BpbiB7XG4gIDAlIHtcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDBkZWcpO1xuICAgIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTsgfVxuICA1MCUge1xuICAgIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICAtbXMtdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgxODBkZWcpOyB9XG4gIDEwMCUge1xuICAgIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICAtbXMtdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpOyB9IH1cblxuQGtleWZyYW1lcyBzcGluIHtcbiAgMCUge1xuICAgIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7XG4gICAgLW1zLXRyYW5zZm9ybTogcm90YXRlKDBkZWcpO1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDBkZWcpOyB9XG4gIDUwJSB7XG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpO1xuICAgIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpO1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDE4MGRlZyk7IH1cbiAgMTAwJSB7XG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpO1xuICAgIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpO1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IH0gfVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */</style><style type="text/css">
+#ddown1 button {
+  background: white;
+  border: #990033 1px solid;
+  padding: 10px 20px;
+  font: 16px/1 "Open Sans", sans-serif;
+  cursor: pointer;
+  height: 50px;
+  color: #990033;
+}
+#ddown1 button:focus {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+#ddown1 > div {
+  border-radius: 0px;
+}
+.login-via-ids-area {
+  margin-top: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.login-via-ids-area div {
+    cursor: pointer;
+}
+
+/*# sourceURL=/var/www/arlp.lancertool/releases/99/resources/assets/js/views/pages/SignIn.vue */
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2FybHAubGFuY2VydG9vbC9yZWxlYXNlcy85OS9yZXNvdXJjZXMvYXNzZXRzL2pzL3ZpZXdzL3BhZ2VzL1NpZ25Jbi52dWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLDBCQUEwQjtFQUMxQixtQkFBbUI7RUFDbkIscUNBQXFDO0VBQ3JDLGdCQUFnQjtFQUNoQixhQUFhO0VBQ2IsZUFBZTtDQUFFO0FBQ2pCO0lBQ0UseUJBQWlCO1lBQWpCLGlCQUFpQjtDQUFFO0FBRXZCO0VBQ0UsbUJBQW1CO0NBQUU7QUFFdkI7RUFDRSxpQkFBaUI7RUFDakIscUJBQWM7RUFBZCxxQkFBYztFQUFkLGNBQWM7RUFDZCwwQkFBb0I7TUFBcEIsdUJBQW9CO1VBQXBCLG9CQUFvQjtFQUNwQiwwQkFBK0I7TUFBL0IsdUJBQStCO1VBQS9CLCtCQUErQjtDQUFFO0FBQ2pDO0lBQ0UsZ0JBQWdCO0NBQUUiLCJmaWxlIjoiU2lnbkluLnZ1ZSIsInNvdXJjZXNDb250ZW50IjpbIiNkZG93bjEgYnV0dG9uIHtcbiAgYmFja2dyb3VuZDogd2hpdGU7XG4gIGJvcmRlcjogIzk5MDAzMyAxcHggc29saWQ7XG4gIHBhZGRpbmc6IDEwcHggMjBweDtcbiAgZm9udDogMTZweC8xIFwiT3BlbiBTYW5zXCIsIHNhbnMtc2VyaWY7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgaGVpZ2h0OiA1MHB4O1xuICBjb2xvcjogIzk5MDAzMzsgfVxuICAjZGRvd24xIGJ1dHRvbjpmb2N1cyB7XG4gICAgYm94LXNoYWRvdzogbm9uZTsgfVxuXG4jZGRvd24xID4gZGl2IHtcbiAgYm9yZGVyLXJhZGl1czogMHB4OyB9XG5cbi5sb2dpbi12aWEtaWRzLWFyZWEge1xuICBtYXJnaW4tdG9wOiAxNXB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47IH1cbiAgLmxvZ2luLXZpYS1pZHMtYXJlYSBkaXYge1xuICAgIGN1cnNvcjogcG9pbnRlcjsgfVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */</style><style type="text/css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*# sourceURL=undefined */
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJGb3Jnb3RQYXNzd29yZE1vZGFsLnZ1ZSIsInNvdXJjZVJvb3QiOiIifQ== */</style><style type="text/css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*# sourceURL=undefined */
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJSZXNldFBhc3N3b3JkTW9kYWwudnVlIiwic291cmNlUm9vdCI6IiJ9 */</style><style type="text/css">
+form[data-v-0e546757] {
+  padding: 15px;
+}
+form input[data-v-0e546757] {
+    margin-bottom: 15px;
+}
+
+/*# sourceURL=/var/www/arlp.lancertool/releases/99/resources/assets/js/views/modals/InsertLDAPModal.vue */
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2FybHAubGFuY2VydG9vbC9yZWxlYXNlcy85OS9yZXNvdXJjZXMvYXNzZXRzL2pzL3ZpZXdzL21vZGFscy9JbnNlcnRMREFQTW9kYWwudnVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQTtFQUNFLGNBQWM7Q0FBRTtBQUNoQjtJQUNFLG9CQUFvQjtDQUFFIiwiZmlsZSI6Ikluc2VydExEQVBNb2RhbC52dWUiLCJzb3VyY2VzQ29udGVudCI6WyJmb3JtIHtcbiAgcGFkZGluZzogMTVweDsgfVxuICBmb3JtIGlucHV0IHtcbiAgICBtYXJnaW4tYm90dG9tOiAxNXB4OyB9XG4iXSwic291cmNlUm9vdCI6IiJ9 */</style></head>
+<body>
+    <main id="page"><section data-v-04952c8e="" class="mb-3"><nav data-v-04952c8e="" class="navbar navbar-light navbar-expand-md"><button data-v-04952c8e="" type="button" aria-label="Toggle navigation" aria-controls="nav_collapse" aria-expanded="false" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button> <a data-v-04952c8e="" target="_self" href="/" class="navbar-brand"><img data-v-04952c8e="" src="/images/audentes.svg" alt=""></a> <div data-v-04952c8e="" id="nav_collapse" class="navbar-collapse collapse" style="display: none;"><!----> <!----> <!----> <!----> <!----> <ul data-v-04952c8e="" class="navbar-nav ml-auto"><li data-v-04952c8e="" class="nav-item"><a data-v-04952c8e="" href="/sign-up" class="nav-link" target="_self">
+          Kandideeri
+        </a></li> <li data-v-04952c8e="" class="nav-item b-nav-dropdown dropdown language" id="__BVID__16"><a aria-haspopup="true" aria-expanded="false" target="_self" href="#" class="nav-link dropdown-toggle" id="__BVID__16__BV_button_"><span>Keel</span></a><ul tabindex="-1" class="dropdown-menu dropdown-menu-right" aria-labelledby="__BVID__16__BV_button_"><li data-v-04952c8e="" role="presentation"><a role="menuitem" target="_self" href="javascript: void(0)" class="dropdown-item"><img data-v-04952c8e="" src="/images/estonia.png" alt="" class="w-25">
+            Eesti keel
+          </a></li><li data-v-04952c8e="" role="presentation"><a role="menuitem" target="_self" href="javascript: void(0)" class="dropdown-item"><img data-v-04952c8e="" src="/images/england.png" alt="" class="w-25">
+            English
+          </a></li></ul></li> <!----> <!----></ul></div></nav> <!----></section> <!----> <main><div class="container container-fluid-lg"><div class="row justify-content-center"><div class="col-lg-4"><h2 class="text-center">
+          Logi sisse
+        </h2> <form><div class="form-group"><label for="inputEmail">E-post</label> <input id="inputEmail" type="email" placeholder="Sisesta e-post" aria-describedby="emailHelp" required="required" class="form-control border border-danger"></div> <div class="form-group"><label for="inputPassword">Salasõna</label> <input id="inputPassword" type="password" placeholder="Salasõna" required="required" class="form-control border border-danger"></div> <div class="row"><div class="col"><button type="submit" class="primary-button">
+                Logi sisse
+              </button></div> <div class="col d-flex justify-content-end"><button class="btn btn-link pr-0">
+                Unustasin salasõna?
+              </button></div></div></form> <hr> <div class="login-via-ids-area"><div title="Logi sisse ID kaardiga"><img src="../../../images/id-kaart-logo-uus.png" alt=""></div> <div title="Logi sisse Mobiil ID-ga"><img src="../../../images/mid-logo-uus.png" alt=""></div></div></div></div></div> <!----> <!----> <!----></main> <div class="notifications" style="width: 300px; top: 0px; right: 0px;"><span><div data-id="0" class="notification-wrapper" style="transition: all 1000ms ease 0s;"><div class="vue-notification-template vue-notification error"><!----> <div class="notification-content">E-posti aadress või parool on vale</div></div></div></span></div> <!----> <!----> <div id="modals-container"></div></main>
+
+    <script src="http://arlp.lancertool.com/dataset.js"></script>
+
+    <script src="/js/manifest.js?id=bb58468fac8d92ddbd39"></script>
+    <script src="/js/vendor.js?id=15bb06382828e95bbb09"></script>
+    <script src="/js/app.js?id=cb7c272f18c960fba232"></script>
+
+</body></html>
