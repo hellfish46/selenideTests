@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Selenide tests" verbose="1" >
+    <test name="Practise" >
+        <classes>
+            <class name="test.practise.Practise" />
+        </classes>
+    </test>
+</suite>
